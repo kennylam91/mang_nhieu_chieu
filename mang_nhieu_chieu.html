@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng cửu chương</title>
+</head>
+<body>
+<script>
+    let rowNumber=10;
+    let columnNumber=10;
+    let count=0;
+    let arr=[];
+    let idtext=[];
+    function rowDefine(x,y) { // Hàm tạo định dạng của các ô trong 1 hàng
+        //Ô trong <table> cần có dạng <td>i * x= ...</td>, biến x đại diện cho hàng, colunm đại diện cho số cột
+        result2 = "";//Khởi tạo kết quả của hàm
+        for (i = 0; i <y ; i++) {
+            idtext=[String(x),String(i)];
+            result2 += "<td onclick= 'elementChange(this.id)' id='"+idtext +"'></td>";
+        }
+        // console.log(result2);
+        return result2;
+
+    }
+
+    console.log(rowDefine(2));
+
+    function tableDefine(x) { //Hàm tạo định dạng của các hàng trong bảng
+        result3 = "<tr>"+"</tr>";// Khởi tạo biến kết quả với hàng tiêu đề
+        for (j = 0; j < x; j++) {
+            result3 += "<tr>" + rowDefine(j,columnNumber) + " </tr>";
+        }
+        return result3;
+    }
+
+    // console.log(rowDefine(2));
+    let tableCss = '<table border="1" cellspacing="0""><caption><h1>Game co caro</h1></caption>';
+    document.write(tableCss + tableDefine(rowNumber) + "</table>");
+    function elementChange(id){
+
+        let zValue;
+        if(count%2==0) zValue="x";
+        else zValue="o";
+        // console.log(count);
+        document.getElementById(id).innerHTML=zValue;
+        arr[[id[0]][id[2]]]=zValue;
+        console.log(id[0]);
+        console.log(id[2]);
+        console.log(arr);
+        count++;
+    }
+
+</script>
+<style>
+    td {
+        text-align: center;
+        width:50px;
+        height:50px;
+        font-weight: bold;
+        font-size:1.2rem;
+    }
+
+</style>
+</body>
+</html>
